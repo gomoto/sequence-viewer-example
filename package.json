@@ -13,7 +13,7 @@
     "typescript": "^1.8.10"
   },
   "dependencies": {
-    "atom": "git+ssh://git@github.com/CyrusBiotechnology/atom.git#v0.1.0",
+    "atom": "git+ssh://git@github.com/CyrusBiotechnology/atom.git#v0.1.3",
     "sequence-viewer": "git+ssh://git@github.com/CyrusBiotechnology/sequence-viewer.git#v0.2.3"
   }
 }

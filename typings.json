@@ -1,0 +1,6 @@
+{
+  "globalDependencies": {
+    "eventemitter3": "registry:dt/eventemitter3#1.1.1+20151208234524",
+    "node": "registry:dt/node#6.0.0+20160728152422"
+  }
+}
