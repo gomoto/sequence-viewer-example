@@ -1,3 +1,4 @@
 import { Grid } from 'sequence-viewer';
+import { Tree } from 'atom';
 
-console.log('Hello, world!', Grid);
+console.log('Hello, world!', Tree);
