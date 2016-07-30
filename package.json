@@ -13,6 +13,6 @@
     "typescript": "^1.8.10"
   },
   "dependencies": {
-    "sequence-viewer": "git+ssh://git@github.com/CyrusBiotechnology/sequence-viewer.git#v0.2.2"
+    "sequence-viewer": "git+ssh://git@github.com/CyrusBiotechnology/sequence-viewer.git#v0.2.3"
   }
 }

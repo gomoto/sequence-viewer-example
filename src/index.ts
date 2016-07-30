@@ -1,3 +1,3 @@
-import Grid from 'sequence-viewer/lib/Grid';
+import { Grid } from 'sequence-viewer';
 
 console.log('Hello, world!', Grid);

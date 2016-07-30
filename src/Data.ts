@@ -1,4 +1,4 @@
-import GridData from 'sequence-viewer/lib/GridData';
+import { GridData } from 'sequence-viewer';
 
 class Data implements GridData {
 
