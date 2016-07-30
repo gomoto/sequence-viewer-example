@@ -1,4 +1,15 @@
 {
   "name": "sequence-viewer-example",
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "scripts": {
+    "example": "gulp"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.13.0",
+    "browserifier": "^0.2.1",
+    "gulp": "^3.9.1",
+    "mkdirp": "^0.5.1",
+    "trash": "^3.4.1",
+    "typescript": "^1.8.10"
+  }
 }
