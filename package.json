@@ -11,5 +11,8 @@
     "mkdirp": "^0.5.1",
     "trash": "^3.4.1",
     "typescript": "^1.8.10"
+  },
+  "dependencies": {
+    "sequence-viewer": "git+ssh://git@github.com/CyrusBiotechnology/sequence-viewer.git#v0.2.2"
   }
 }

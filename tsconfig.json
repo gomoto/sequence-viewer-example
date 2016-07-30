@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "noEmitOnError": false,
+    "noImplicitAny": true,
+    "removeComments": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "target": "es5"
+  },
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "filesGlob": [
+    "src/**/*.ts",
+    "!src/**/*.spec.ts",
+    "typings/**/*.d.ts"
+  ],
+  "atom": {
+    "rewriteTsconfig": true
+  },
+  "files": [
+    "src/Data.ts",
+    "src/index.ts"
+  ]
+}
