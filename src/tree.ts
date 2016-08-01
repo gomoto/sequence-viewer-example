@@ -38,6 +38,7 @@ function addStructure(structure: any) {
     structureNode.add(chainNode);
     chain.residues.forEach((residue:any) => {
       var residueNode = new Residue(residue.label, AminoAcids[aa.singleToName(residue.symbol)], 'C');
+      residueNode.setProperty('color', '#0000ff');
       chainNode.add(residueNode);
     });
   });

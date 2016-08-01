@@ -22,8 +22,6 @@ grid.on('mousedown:residue', (event: any, r: number, s: number) => {
   var residue = <Residue> sequences[s].getProperty('residues')[r];
   residue.touch();
   grid.draw();
-  grid.render();
 });
 
 grid.draw();
-grid.render();
