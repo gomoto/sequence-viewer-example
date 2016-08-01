@@ -27,6 +27,7 @@ tree.root.setProperty('max', Math.max(...residueCounts));
 function addStructure(structure: any) {
   var structureNode = new Structure(structure.key);
   tree.root.add(structureNode);
+  structureNode.setProperty('labels', structure.labels);
   // Add residue indexing as a feature of Structure nodes!
   structureNode.setProperty('residues', []);
   structureNode.on('nodeAdded', (node: Node) => {
