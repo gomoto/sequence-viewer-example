@@ -15,6 +15,8 @@ import trp from './sequences/1l2y';
 
 const tree = new Tree();
 tree.touchType = 'Residue';
+tree.touchOuterDepth = 1;
+
 addStructure(insulin);
 addStructure(trp);
 var residueCounts = tree.root.children.map((seq) => {

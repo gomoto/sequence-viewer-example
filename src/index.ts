@@ -18,9 +18,9 @@ grid.stickyColumn = true;
 
 const sequences = <Structure[]> tree.root.children;
 
-grid.on('mousedown:residue', (event: any, r: number, s: number) => {
+grid.on('mousedown:residue', (event: MouseEvent, r: number, s: number) => {
   var residue = <Residue> sequences[s].getProperty('residues')[r];
-  residue.touch();
+  residue.touch({ ctrl: event.ctrlKey || event.metaKey, shift: event.shiftKey });
   grid.draw();
 });
 
