@@ -24,4 +24,10 @@ grid.on('mousedown:residue', (event: MouseEvent, r: number, s: number) => {
   grid.draw();
 });
 
+grid.on('mouseover:residue', (event: MouseEvent, r: number, s: number) => {
+  var residue = <Residue> sequences[s].getProperty('residues')[r];
+  residue.touch({ ctrl: event.ctrlKey || event.metaKey, shift: true });
+  grid.draw();
+});
+
 grid.draw();
