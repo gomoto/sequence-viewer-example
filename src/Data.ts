@@ -59,13 +59,13 @@ class Data implements GridData {
 
   getResidueLabel(r: number, s: number) {
     var residue = sequences[s].residues[r];
-    // if (residue.chainIndex === 0) {
-    //   return residue.parent.id;
-    // }
-    // if (residue.chainIndex % 2 === 1) {
-    //   return '';
-    // }
-    return `${residue.id}`;
+    if (residue.chainIndex === 0) {
+      return residue.parent.id;
+    }
+    if (residue.chainIndex % 5 === 0) {
+      return `${residue.id}`;
+    }
+    return '';
   }
   getResidueLabelTextColor(r: number, s: number) {
     return '#555555';

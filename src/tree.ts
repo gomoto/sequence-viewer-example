@@ -38,8 +38,8 @@ function addStructure(structure: any) {
   structure.chains.forEach((chain: any) => {
     var chainNode = new Chain(chain.name);
     sequenceNode.add(chainNode);
-    chain.residues.forEach((residue: any) => {
-      var monomerNode = new Monomer(residue.label, AminoAcids[residue.symbol], '#0000ff');
+    chain.residues.forEach((residue: any, chainIndex: number) => {
+      var monomerNode = new Monomer(residue.label, AminoAcids[residue.symbol], chainIndex, '#0000ff');
       chainNode.add(monomerNode);
     });
   });
