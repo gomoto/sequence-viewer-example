@@ -20,6 +20,8 @@
   "files": [
     "src/Data.ts",
     "src/index.ts",
+    "src/Monomer.ts",
+    "src/Sequence.ts",
     "src/sequences/1l2y.ts",
     "src/sequences/4ins.ts",
     "src/tree.ts",

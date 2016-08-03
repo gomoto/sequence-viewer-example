@@ -5,12 +5,15 @@ import {
   Chain,
   Residue,
   AminoAcids,
+  Node,
   Tree
 } from 'atom';
 
-import tree from './tree';
+import tree, { treeData } from './tree';
+import Sequence from './Sequence';
 
-const sequences = <Structure[]> tree.root.children;
+
+const sequences = <Sequence[]> tree.root.children;
 
 class Data implements GridData {
 
@@ -29,41 +32,40 @@ class Data implements GridData {
     return sequences.length;
   }
   getMaxResidueCount() {
-    return <number> tree.root.getProperty('max');
+    return treeData.max;
   }
   getResidueCount(s: number) {
-    return sequences[s].countNodes('Residue');
+    return sequences[s].countNodes('Monomer');
   }
 
 
   showLabels(s: number) {
-    return sequences[s].getProperty('labels');
+    return sequences[s].areLabelsVisible;
   }
 
 
   getResidue(r: number, s: number) {
-    var residue = <Residue> sequences[s].getProperty('residues')[r];
-    return residue.aminoAcid.single;
+    return sequences[s].residues[r].aminoAcid.single;
   }
   getResidueTextColor(r: number, s: number) {
-    var residue = <Residue> sequences[s].getProperty('residues')[r];
-    return residue.isOn ? '#ffffff' : residue.getProperty('color');
+    var residue = sequences[s].residues[r];
+    return residue.isOn ? '#ffffff' : residue.color;
   }
   getResidueBackgroundColor(r: number, s: number) {
-    var residue = <Residue> sequences[s].getProperty('residues')[r];
-    return residue.isOn ? residue.getProperty('color') : '';
+    var residue = sequences[s].residues[r];
+    return residue.isOn ? residue.color : '';
   }
 
 
   getResidueLabel(r: number, s: number) {
-    var residue = <Residue> sequences[s].getProperty('residues')[r];
+    var residue = sequences[s].residues[r];
     // if (residue.chainIndex === 0) {
     //   return residue.parent.id;
     // }
     // if (residue.chainIndex % 2 === 1) {
     //   return '';
     // }
-    return `${residue.number}`;
+    return `${residue.id}`;
   }
   getResidueLabelTextColor(r: number, s: number) {
     return '#555555';

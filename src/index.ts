@@ -8,6 +8,7 @@ import {
 } from 'atom';
 import Data from './Data';
 import tree from './tree';
+import Sequence from './Sequence';
 
 const elem = document.getElementById('sequence-viewer');
 const data = new Data();
@@ -16,23 +17,21 @@ const grid = new Grid(elem, data);
 grid.stickyRow = true;
 grid.stickyColumn = true;
 
-const sequences = <Structure[]> tree.root.children;
+const sequences = <Sequence[]> tree.root.children;
 
 grid.on('mousedown:sequence', (event: MouseEvent, s: number) => {
-  var sequence = <Structure> sequences[s];
-  sequence.setProperty('labels', !sequence.getProperty('labels'));
+  var sequence = sequences[s];
+  sequence.areLabelsVisible = !sequence.areLabelsVisible;
   grid.draw();
 });
 
 grid.on('mousedown:residue', (event: MouseEvent, r: number, s: number) => {
-  var residue = <Residue> sequences[s].getProperty('residues')[r];
-  residue.touch({ ctrl: event.ctrlKey || event.metaKey, shift: event.shiftKey });
+  sequences[s].residues[r].touch({ ctrl: event.ctrlKey || event.metaKey, shift: event.shiftKey });
   grid.draw();
 });
 
 grid.on('mouseover:residue', (event: MouseEvent, r: number, s: number) => {
-  var residue = <Residue> sequences[s].getProperty('residues')[r];
-  residue.touch({ ctrl: event.ctrlKey || event.metaKey, shift: true });
+  sequences[s].residues[r].touch({ ctrl: event.ctrlKey || event.metaKey, shift: true });
   grid.draw();
 });
 

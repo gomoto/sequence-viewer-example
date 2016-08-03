@@ -13,39 +13,44 @@ import {
 import insulin from './sequences/4ins';
 import trp from './sequences/1l2y';
 
+import Sequence from './Sequence';
+import Monomer from './Monomer';
+
+
 const tree = new Tree();
-tree.touchType = 'Residue';
+tree.touchType = 'Monomer';
 tree.touchOuterDepth = 1;
 
-addStructure(insulin);
-addStructure(trp);
-var residueCounts = tree.root.children.map((seq) => {
-  return seq.countNodes('Residue');
-});
-tree.root.setProperty('max', Math.max(...residueCounts));
+var treeData = {
+  // track largest sequence
+  max: 0
+};
 
+
+addStructure(trp);
+addStructure(insulin);
+
+
+// Add sequence and recalculate longest sequence
 function addStructure(structure: any) {
-  var structureNode = new Structure(structure.key);
-  tree.root.add(structureNode);
-  structureNode.setProperty('labels', structure.labels);
-  // Add residue indexing as a feature of Structure nodes!
-  structureNode.setProperty('residues', []);
-  structureNode.on('nodeAdded', (node: Node) => {
-    if (node.type === 'Residue') {
-      let residues = <Residue[]> structureNode.getProperty('residues');
-      residues.push(<Residue> node);
-    }
-  });
-  structure.chains.forEach((chain:any) => {
+  var sequenceNode = new Sequence(structure.key, false);
+  tree.root.add(sequenceNode);
+  structure.chains.forEach((chain: any) => {
     var chainNode = new Chain(chain.name);
-    structureNode.add(chainNode);
-    chain.residues.forEach((residue:any) => {
-      var residueNode = new Residue(residue.label, AminoAcids[aa.singleToName(residue.symbol)], 'C');
-      residueNode.setProperty('color', '#0000ff');
-      chainNode.add(residueNode);
+    sequenceNode.add(chainNode);
+    chain.residues.forEach((residue: any) => {
+      var monomerNode = new Monomer(residue.label, AminoAcids[residue.symbol], '#0000ff');
+      chainNode.add(monomerNode);
     });
   });
+
+  console.log('Calculating maximum sequence length...');
+  if (sequenceNode.residues.length > treeData.max) {
+    treeData.max = sequenceNode.residues.length;
+  }
+  console.log(treeData.max);
 }
 
 
 export default tree;
+export { treeData };
