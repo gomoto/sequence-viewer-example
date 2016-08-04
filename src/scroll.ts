@@ -1,6 +1,5 @@
 import Scroller from './Scroller';
 import state from './state';
-import tree from './tree';
 
 var width = state.width - (state.stickyColumn ? state.stickyColumnWidth : 0);
 var height = state.height - (state.stickyRow ? state.stickyRowHeight : 0);

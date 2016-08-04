@@ -27,7 +27,6 @@
     "src/sequences/1l2y.ts",
     "src/sequences/4ins.ts",
     "src/state.ts",
-    "src/tree.ts",
     "typings/globals/eventemitter3/index.d.ts",
     "typings/globals/node/index.d.ts",
     "typings/index.d.ts"

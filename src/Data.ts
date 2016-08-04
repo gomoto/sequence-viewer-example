@@ -9,12 +9,11 @@ import {
   Tree
 } from 'atom';
 
-import tree from './tree';
 import Sequence from './Sequence';
 import state from './state';
 
 
-const sequences = <Sequence[]> tree.root.children;
+const sequences = <Sequence[]> state.tree.root.children;
 
 class Data implements GridData {
 

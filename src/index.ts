@@ -7,7 +7,6 @@ import {
   Tree
 } from 'atom';
 import Data from './Data';
-import tree from './tree';
 import Sequence from './Sequence';
 import state from './state';
 import scroller from './scroll';
@@ -22,7 +21,7 @@ grid.stickyColumn = state.stickyColumn;
 grid.stickyRowHeight = state.stickyRowHeight;
 grid.stickyColumnWidth = state.stickyColumnWidth;
 
-const sequences = <Sequence[]> tree.root.children;
+const sequences = <Sequence[]> state.tree.root.children;
 
 grid.on('mousedown:sequence', (event: MouseEvent, s: number) => {
   var sequence = sequences[s];
