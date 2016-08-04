@@ -3,7 +3,7 @@ import {
   Chain,
   AminoAcids
 } from 'atom';
-
+import Scroller from './Scroller';
 import Sequence from './Sequence';
 import Monomer from './Monomer';
 
@@ -13,6 +13,7 @@ import trp from './sequences/1l2y';
 class State {
 
   tree: Tree;
+  scroller: Scroller;
 
   width = 800;
   height = 600;
@@ -29,6 +30,7 @@ class State {
 
   constructor() {
     this.initializeTree();
+    this.initializeScroller();
   }
 
   // Build ATOM tree.
@@ -38,6 +40,16 @@ class State {
     this.tree.touchOuterDepth = 1;
     this.addStructure(trp);
     this.addStructure(insulin);
+  }
+
+  initializeScroller() {
+    var width = this.width - (this.stickyColumn ? this.stickyColumnWidth : 0);
+    var height = this.height - (this.stickyRow ? this.stickyRowHeight : 0);
+    var maxScroll = {
+      x: this.maxResidues * this.residueWidth - width,
+      y: 2 * this.residueHeight - height
+    };
+    this.scroller = new Scroller(0, 0, maxScroll.x, maxScroll.y);
   }
 
   // Add sequence and recalculate longest sequence.

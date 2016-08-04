@@ -9,7 +9,6 @@ import {
 import Data from './Data';
 import Sequence from './Sequence';
 import state from './state';
-import scroller from './scroll';
 
 const elem = document.getElementById('sequence-viewer');
 const data = new Data();
@@ -43,10 +42,10 @@ grid.on('scroll', (event: WheelEvent) => {
   var originalR = grid.origin.r;
   var originalS = grid.origin.s;
 
-  scroller.scrollBy(event.deltaX, event.deltaY);
+  state.scroller.scrollBy(event.deltaX, event.deltaY);
 
-  grid.origin.r = Math.floor(scroller.x / grid.residueWidth);
-  grid.origin.s = Math.floor(scroller.y / grid.residueHeight);// not quite
+  grid.origin.r = Math.floor(state.scroller.x / grid.residueWidth);
+  grid.origin.s = Math.floor(state.scroller.y / grid.residueHeight);// not quite
 
   // origin did not change
   if (grid.origin.r === originalR && grid.origin.s === originalS) {
