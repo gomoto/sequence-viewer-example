@@ -16,16 +16,14 @@ const grid = new Grid(elem, data, state.width, state.height);
 
 grid.stickyRow = state.stickyRow;
 grid.stickyColumn = state.stickyColumn;
+grid.gridLines = state.gridLines;
+grid.labels = state.labels;
 
 grid.stickyRowHeight = state.stickyRowHeight;
 grid.stickyColumnWidth = state.stickyColumnWidth;
-grid.gridLines = state.gridLines;
-
-grid.on('mousedown:sequence', (event: MouseEvent, s: number) => {
-  var sequence = state.sequences[s];
-  sequence.areLabelsVisible = !sequence.areLabelsVisible;
-  grid.draw();
-});
+grid.residueWidth = state.residueWidth;
+grid.residueHeight = state.residueHeight;
+grid.labelHeight = state.labelHeight;
 
 grid.on('mousedown:residue', (event: MouseEvent, r: number, s: number) => {
   state.sequences[s].residues[r].touch({ ctrl: event.ctrlKey || event.metaKey, shift: event.shiftKey });
@@ -38,18 +36,12 @@ grid.on('mouseover:residue', (event: MouseEvent, r: number, s: number) => {
 });
 
 grid.on('scroll', (event: WheelEvent) => {
-  var originalR = grid.origin.r;
-  var originalS = grid.origin.s;
-
-  state.scroller.scrollBy(event.deltaX, event.deltaY);
-
-  grid.origin.r = Math.floor(state.scroller.x / grid.residueWidth);
-  grid.origin.s = Math.floor(state.scroller.y / grid.residueHeight);// not quite
-
-  // origin did not change
-  if (grid.origin.r === originalR && grid.origin.s === originalS) {
+  state.scroller.scroll(event.deltaX, event.deltaY);
+  if (grid.origin.r === state.scroller.r && grid.origin.s === state.scroller.s) {
     return;
   }
+  grid.origin.r = state.scroller.r;
+  grid.origin.s = state.scroller.s;
   grid.draw();
 });
 

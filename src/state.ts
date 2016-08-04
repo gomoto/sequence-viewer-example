@@ -15,16 +15,18 @@ class State {
   tree: Tree;
   scroller: Scroller;
 
-  width = 800;
-  height = 600;
+  width = 804;
+  height = 40;
 
   residueWidth = 12;
   residueHeight = 16;
+  labelHeight = 12;
   stickyRow = true;
   stickyRowHeight = 16;
   stickyColumn = true;
   stickyColumnWidth = 80;
   gridLines = true;
+  labels = true;
 
   // track longest sequence
   maxResidues = 0
@@ -48,18 +50,31 @@ class State {
   }
 
   initializeScroller() {
+    this.scroller = new Scroller();
+    this.setScrollerRatio();
+    this.setScrollerMaximums();
+  }
+
+  setScrollerRatio() {
+    var residueWidth = this.residueWidth;
+    var residueHeight = this.residueHeight + (this.labels ? this.labelHeight : 0);
+    this.scroller.ratio = [1/residueWidth, 1/residueHeight];
+  }
+
+  // Scroll just enough to include last sequence and last residue
+  setScrollerMaximums() {
     var width = this.width - (this.stickyColumn ? this.stickyColumnWidth : 0);
     var height = this.height - (this.stickyRow ? this.stickyRowHeight : 0);
-    var maxScroll = {
-      x: this.maxResidues * this.residueWidth - width,
-      y: 2 * this.residueHeight - height
-    };
-    this.scroller = new Scroller(0, 0, maxScroll.x, maxScroll.y);
+    var residueWidth = this.residueWidth;
+    var residueHeight = this.residueHeight + (this.labels ? this.labelHeight : 0);
+    this.scroller.xMax = this.maxResidues * residueWidth - width;
+    this.scroller.yMax = this.sequences.length * residueHeight - height;
+    console.debug('Setting scroller maximums', this.scroller.xMax, this.scroller.yMax);
   }
 
   // Add sequence and recalculate longest sequence.
   addStructure(structure: any) {
-    var sequenceNode = new Sequence(structure.key, false);
+    var sequenceNode = new Sequence(structure.key);
     this.tree.root.add(sequenceNode);
     structure.chains.forEach((chain: any) => {
       var chainNode = new Chain(chain.name);

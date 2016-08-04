@@ -37,11 +37,6 @@ class Data implements GridData {
   }
 
 
-  showLabels(s: number) {
-    return state.sequences[s].areLabelsVisible;
-  }
-
-
   getResidue(r: number, s: number) {
     return state.sequences[s].residues[r].aminoAcid.single;
   }

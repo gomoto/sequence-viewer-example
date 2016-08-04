@@ -2,26 +2,21 @@ import { Structure, Residue, Node } from 'atom';
 import { SerializedStructure } from 'atom/lib/tree/Structure';
 import Monomer from './Monomer';
 
-export interface SerializedSequence extends SerializedStructure {
-  areLabelsVisible: boolean;
-}
+export interface SerializedSequence extends SerializedStructure {}
 
 class Sequence extends Structure {
 
-  areLabelsVisible: boolean;
   residues: Monomer[];
 
   constructor(serializedSequence: SerializedSequence);
-  constructor(id: string, areLabelsVisible: boolean);
-  constructor(idOrSequence: string | SerializedSequence, areLabelsVisible?: boolean) {
+  constructor(id: string);
+  constructor(idOrSequence: string | SerializedSequence) {
     if (typeof idOrSequence === 'object') {
       var serializedSequence = idOrSequence;
       super(serializedSequence);
-      this.areLabelsVisible = serializedSequence.areLabelsVisible;
     } else {
       var id = idOrSequence;
       super(id);
-      this.areLabelsVisible = areLabelsVisible;
     }
     this.type = 'Sequence';
 
@@ -39,8 +34,7 @@ class Sequence extends Structure {
     return {
       id: this.id,
       type: this.type,
-      isOn: this.isOn,
-      areLabelsVisible: this.areLabelsVisible
+      isOn: this.isOn
     };
   }
 
