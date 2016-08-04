@@ -24,6 +24,7 @@ class State {
   stickyRowHeight = 16;
   stickyColumn = true;
   stickyColumnWidth = 80;
+  gridLines = true;
 
   // track longest sequence
   maxResidues = 0

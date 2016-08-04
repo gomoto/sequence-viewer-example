@@ -19,6 +19,7 @@ grid.stickyColumn = state.stickyColumn;
 
 grid.stickyRowHeight = state.stickyRowHeight;
 grid.stickyColumnWidth = state.stickyColumnWidth;
+grid.gridLines = state.gridLines;
 
 const sequences = <Sequence[]> state.tree.root.children;
 
