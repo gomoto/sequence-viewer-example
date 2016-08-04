@@ -15,16 +15,12 @@ import trp from './sequences/1l2y';
 
 import Sequence from './Sequence';
 import Monomer from './Monomer';
+import state from './state';
 
 
 const tree = new Tree();
 tree.touchType = 'Monomer';
 tree.touchOuterDepth = 1;
-
-var treeData = {
-  // track largest sequence
-  max: 0
-};
 
 
 addStructure(trp);
@@ -45,12 +41,11 @@ function addStructure(structure: any) {
   });
 
   console.log('Calculating maximum sequence length...');
-  if (sequenceNode.residues.length > treeData.max) {
-    treeData.max = sequenceNode.residues.length;
+  if (sequenceNode.residues.length > state.maxResidues) {
+    state.maxResidues = sequenceNode.residues.length;
   }
-  console.log(treeData.max);
+  console.log(state.maxResidues);
 }
 
 
 export default tree;
-export { treeData };

@@ -9,8 +9,9 @@ import {
   Tree
 } from 'atom';
 
-import tree, { treeData } from './tree';
+import tree from './tree';
 import Sequence from './Sequence';
+import state from './state';
 
 
 const sequences = <Sequence[]> tree.root.children;
@@ -32,7 +33,7 @@ class Data implements GridData {
     return sequences.length;
   }
   getMaxResidueCount() {
-    return treeData.max;
+    return state.maxResidues;
   }
   getResidueCount(s: number) {
     return sequences[s].countNodes('Monomer');
