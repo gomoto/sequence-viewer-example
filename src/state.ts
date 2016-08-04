@@ -43,6 +43,10 @@ class State {
     this.addStructure(insulin);
   }
 
+  get sequences() {
+    return <Sequence[]> this.tree.root.children;
+  }
+
   initializeScroller() {
     var width = this.width - (this.stickyColumn ? this.stickyColumnWidth : 0);
     var height = this.height - (this.stickyRow ? this.stickyRowHeight : 0);

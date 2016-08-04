@@ -13,8 +13,6 @@ import Sequence from './Sequence';
 import state from './state';
 
 
-const sequences = <Sequence[]> state.tree.root.children;
-
 class Data implements GridData {
 
   getStickyRowValue(r: number) {
@@ -24,41 +22,41 @@ class Data implements GridData {
     return `${r + 1}`;
   }
   getStickyColumnValue(s: number) {
-    return sequences[s].id;
+    return state.sequences[s].id;
   }
 
 
   getSequenceCount() {
-    return sequences.length;
+    return state.sequences.length;
   }
   getMaxResidueCount() {
     return state.maxResidues;
   }
   getResidueCount(s: number) {
-    return sequences[s].countNodes('Monomer');
+    return state.sequences[s].countNodes('Monomer');
   }
 
 
   showLabels(s: number) {
-    return sequences[s].areLabelsVisible;
+    return state.sequences[s].areLabelsVisible;
   }
 
 
   getResidue(r: number, s: number) {
-    return sequences[s].residues[r].aminoAcid.single;
+    return state.sequences[s].residues[r].aminoAcid.single;
   }
   getResidueTextColor(r: number, s: number) {
-    var residue = sequences[s].residues[r];
+    var residue = state.sequences[s].residues[r];
     return residue.isOn ? '#ffffff' : residue.color;
   }
   getResidueBackgroundColor(r: number, s: number) {
-    var residue = sequences[s].residues[r];
+    var residue = state.sequences[s].residues[r];
     return residue.isOn ? residue.color : '';
   }
 
 
   getResidueLabel(r: number, s: number) {
-    var residue = sequences[s].residues[r];
+    var residue = state.sequences[s].residues[r];
     if (residue.chainIndex === 0) {
       return residue.parent.id;
     }

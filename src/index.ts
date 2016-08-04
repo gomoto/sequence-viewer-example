@@ -21,21 +21,19 @@ grid.stickyRowHeight = state.stickyRowHeight;
 grid.stickyColumnWidth = state.stickyColumnWidth;
 grid.gridLines = state.gridLines;
 
-const sequences = <Sequence[]> state.tree.root.children;
-
 grid.on('mousedown:sequence', (event: MouseEvent, s: number) => {
-  var sequence = sequences[s];
+  var sequence = state.sequences[s];
   sequence.areLabelsVisible = !sequence.areLabelsVisible;
   grid.draw();
 });
 
 grid.on('mousedown:residue', (event: MouseEvent, r: number, s: number) => {
-  sequences[s].residues[r].touch({ ctrl: event.ctrlKey || event.metaKey, shift: event.shiftKey });
+  state.sequences[s].residues[r].touch({ ctrl: event.ctrlKey || event.metaKey, shift: event.shiftKey });
   grid.draw();
 });
 
 grid.on('mouseover:residue', (event: MouseEvent, r: number, s: number) => {
-  sequences[s].residues[r].touch({ ctrl: event.ctrlKey || event.metaKey, shift: true });
+  state.sequences[s].residues[r].touch({ ctrl: event.ctrlKey || event.metaKey, shift: true });
   grid.draw();
 });
 
