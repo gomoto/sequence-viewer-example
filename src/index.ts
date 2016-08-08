@@ -1,4 +1,9 @@
-import { Grid } from 'sequence-viewer';
+import {
+  Grid,
+  Overview,
+  HorizontalProjection,
+  VerticalProjection
+} from 'sequence-viewer';
 import {
   Structure,
   Chain,
@@ -14,9 +19,16 @@ const elem = document.getElementById('sequence-viewer');
 const data = new Data();
 const grid = new Grid(elem, data, state.width, state.height);
 
+const projectionHeight = 16;
+const overview = new Overview(document.getElementById('overview'), grid, 300, 100);
+const horizontal = new HorizontalProjection(document.getElementById('horizontal'), grid, state.width, projectionHeight);
+const vertical = new VerticalProjection(document.getElementById('vertical'), grid, projectionHeight, state.height);
+
+
 grid.stickyRow = state.stickyRow;
 grid.stickyColumn = state.stickyColumn;
 grid.gridLines = state.gridLines;
+grid.gridLineColor = state.gridLineColor;
 grid.labels = state.labels;
 
 grid.stickyRowHeight = state.stickyRowHeight;

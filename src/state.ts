@@ -14,7 +14,7 @@ class State {
   tree: Tree;
 
   width = 804;
-  height = 40;
+  height = 400;
 
   residueWidth = 12;
   residueHeight = 16;
@@ -24,6 +24,7 @@ class State {
   stickyColumn = true;
   stickyColumnWidth = 80;
   gridLines = true;
+  gridLineColor = '#eeeeee';
   labels = true;
 
   // track longest sequence
