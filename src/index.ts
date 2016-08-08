@@ -35,14 +35,8 @@ grid.on('mouseover:residue', (event: MouseEvent, r: number, s: number) => {
   grid.draw();
 });
 
-grid.on('scroll', (event: WheelEvent) => {
-  state.scroller.scroll(event.deltaX, event.deltaY);
-  if (grid.origin.r === state.scroller.r && grid.origin.s === state.scroller.s) {
-    return;
-  }
-  grid.origin.r = state.scroller.r;
-  grid.origin.s = state.scroller.s;
-  grid.draw();
+grid.on('scroll', (r: number, s: number) => {
+  console.log(`Save new origin (${r},${s})`);
 });
 
 grid.draw();

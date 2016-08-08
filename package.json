@@ -11,10 +11,10 @@
     "gulp": "^3.9.1",
     "mkdirp": "^0.5.1",
     "trash": "^3.4.1",
-    "typescript": "^1.8.10"
+    "typescript": "^2.1.0-dev.20160808"
   },
   "dependencies": {
     "atom": "git+ssh://git@github.com/CyrusBiotechnology/atom.git#v0.1.4",
-    "sequence-viewer": "git+ssh://git@github.com/CyrusBiotechnology/sequence-viewer.git#v0.3.1"
+    "sequence-viewer": "git+ssh://git@github.com/CyrusBiotechnology/sequence-viewer.git#v0.3.2"
   }
 }

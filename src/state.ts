@@ -3,7 +3,6 @@ import {
   Chain,
   AminoAcids
 } from 'atom';
-import Scroller from './Scroller';
 import Sequence from './Sequence';
 import Monomer from './Monomer';
 
@@ -13,7 +12,6 @@ import trp from './sequences/1l2y';
 class State {
 
   tree: Tree;
-  scroller: Scroller;
 
   width = 804;
   height = 40;
@@ -33,7 +31,6 @@ class State {
 
   constructor() {
     this.initializeTree();
-    this.initializeScroller();
   }
 
   // Build ATOM tree.
@@ -47,29 +44,6 @@ class State {
 
   get sequences() {
     return <Sequence[]> this.tree.root.children;
-  }
-
-  initializeScroller() {
-    this.scroller = new Scroller();
-    this.setScrollerRatio();
-    this.setScrollerMaximums();
-  }
-
-  setScrollerRatio() {
-    var residueWidth = this.residueWidth;
-    var residueHeight = this.residueHeight + (this.labels ? this.labelHeight : 0);
-    this.scroller.ratio = [1/residueWidth, 1/residueHeight];
-  }
-
-  // Scroll just enough to include last sequence and last residue
-  setScrollerMaximums() {
-    var width = this.width - (this.stickyColumn ? this.stickyColumnWidth : 0);
-    var height = this.height - (this.stickyRow ? this.stickyRowHeight : 0);
-    var residueWidth = this.residueWidth;
-    var residueHeight = this.residueHeight + (this.labels ? this.labelHeight : 0);
-    this.scroller.xMax = this.maxResidues * residueWidth - width;
-    this.scroller.yMax = this.sequences.length * residueHeight - height;
-    console.debug('Setting scroller maximums', this.scroller.xMax, this.scroller.yMax);
   }
 
   // Add sequence and recalculate longest sequence.
