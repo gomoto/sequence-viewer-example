@@ -15,6 +15,6 @@
   },
   "dependencies": {
     "atom": "git+ssh://git@github.com/CyrusBiotechnology/atom.git#v0.1.4",
-    "sequence-viewer": "git+ssh://git@github.com/CyrusBiotechnology/sequence-viewer.git#v0.3.3"
+    "sequence-viewer": "git+ssh://git@github.com/CyrusBiotechnology/sequence-viewer.git#v0.3.4"
   }
 }
